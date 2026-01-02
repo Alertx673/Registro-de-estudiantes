@@ -1,0 +1,14 @@
+.table-view {
+    -fx-font-size: 14px;
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.text-field, .date-picker {
+    -fx-pref-width: 200px;
+}
+
