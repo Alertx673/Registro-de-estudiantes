@@ -1,32 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="ec.edu.espoch.estudiantes.controlador.MainController"
-      spacing="10" padding="10">
-
-    <Label text="Sistema de Estudiantes" style="-fx-font-size: 20px;" />
-
-    <TextField fx:id="tfCedula" promptText="Cédula"/>
-    <TextField fx:id="tfNombre" promptText="Nombre completo"/>
-    <DatePicker fx:id="dpFecha"/>
-    <TextField fx:id="tfCarrera" promptText="Carrera"/>
-    <TextField fx:id="tfPromedio" promptText="Promedio"/>
-
-    <HBox spacing="10">
-        <Button text="Guardar" onAction="#guardarEstudiante"/>
-        <Button text="Limpiar" onAction="#limpiarCampos"/>
+<VBox spacing="20"
+      xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ec.edu.espoch.estudiantes.controlador.MainController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <Label text="Registro de Estudiantes"
+           alignment="CENTER"
+           maxWidth="Infinity"
+           styleClass="titulo"
+           style="-fx-font-size: 25px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+    
+    <HBox spacing="30"
+          alignment="TOP_CENTER"
+          VBox.vgrow="ALWAYS">
+        
+        <VBox spacing="12"
+              HBox.hgrow="ALWAYS"
+              prefWidth="420">
+            
+            <VBox styleClass="formulario"
+                  VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="15" right="15" bottom="15" left="15"/>
+                </padding>
+                <GridPane hgap="10" vgap="12">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="15"/>
+                        <ColumnConstraints percentWidth="85"/>
+                    </columnConstraints>
+                    
+                    <Label text="Cédula:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tfCedula" 
+                              GridPane.rowIndex="0" GridPane.columnIndex="1"
+                              promptText="Ingrese la cédula"/>
+                    
+                    <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tfNombre" 
+                              GridPane.rowIndex="1" GridPane.columnIndex="1"
+                              promptText="Nombre completo"/>
+                    
+                    <Label text="Fecha Nac.:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="dpFecha" 
+                               GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Carrera:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tfCarrera" 
+                              GridPane.rowIndex="3" GridPane.columnIndex="1"
+                              promptText="Carrera"/>
+                    
+                    <Label text="Promedio:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="tfPromedio" 
+                              GridPane.rowIndex="4" GridPane.columnIndex="1"
+                              promptText="0.00"/>
+                </GridPane>
+            </VBox>
+            
+            <!-- BOTONES FORMULARIO -->
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Nuevo" onAction="#nuevoEstudiante"/>
+                <Button text="Guardar" onAction="#guardarEstudiante" styleClass="btn-guardar"/>
+                <Button text="Limpiar" onAction="#limpiarCampos" styleClass="btn-limpiar"/>
+            </HBox>
+        </VBox>
+        
+        <VBox spacing="12"
+              HBox.hgrow="ALWAYS"
+              prefWidth="420">
+            
+            <!-- TABLA RESPONSIVA -->
+            <TableView fx:id="tableEstudiantes"
+                       VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colCedula" text="Cédula" prefWidth="100"/>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="140"/>
+                    <TableColumn fx:id="colFecha" text="Fecha" prefWidth="100"/>
+                    <TableColumn fx:id="colCarrera" text="Carrera" prefWidth="100"/>
+                    <TableColumn fx:id="colPromedio" text="Promedio" prefWidth="80"/>
+                </columns>
+                <placeholder>
+                    <Label text="No hay estudiantes registrados" 
+                           style="-fx-text-fill: #95a5a6;"/>
+                </placeholder>
+            </TableView>
+            
+            <HBox spacing="15" alignment="CENTER">
+                <Button text="Editar" onAction="#editarEstudiante" styleClass="btn-editar"/>
+                <Button text="Eliminar" onAction="#eliminarEstudiante" styleClass="btn-eliminar"/>
+            </HBox>
+        </VBox>
     </HBox>
-
-    <TableView fx:id="tableEstudiantes">
-        <columns>
-            <TableColumn text="Cédula" fx:id="colCedula"/>
-            <TableColumn text="Nombre" fx:id="colNombre"/>
-            <TableColumn text="Fecha Nac." fx:id="colFecha"/>
-            <TableColumn text="Carrera" fx:id="colCarrera"/>
-            <TableColumn text="Promedio" fx:id="colPromedio"/>
-        </columns>
-    </TableView>
-
 </VBox>
